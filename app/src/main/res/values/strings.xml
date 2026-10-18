@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ReelCount</string>
+    <string name="accessibility_service_description">ReelCount monitors short-video viewing on Instagram Reels, Facebook Reels, and YouTube Shorts to count videos watched and display wellbeing statistics. All data is processed locally on your device without internet transmission.</string>
+</resources>

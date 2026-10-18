@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Counter Progress Ring (Track) -->
+    <path
+        android:pathData="M54,20 A34,34 0 1,0 88,54 A34,34 0 0,0 54,20 Z"
+        android:strokeColor="#2E241E"
+        android:strokeWidth="2.5" />
+
+    <!-- Active Counter Arc (Warm Amber) -->
+    <path
+        android:pathData="M54,20 A34,34 0 0,1 87.5,50"
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round" />
+
+    <!-- Milestone Indicator Dot -->
+    <path
+        android:fillColor="#FDE68A"
+        android:pathData="M54,17.5 A2.5,2.5 0 1,0 54,22.5 A2.5,2.5 0 0,0 54,17.5 Z" />
+
+    <!-- Left Brain Hemisphere -->
+    <path
+        android:fillColor="#15F59E0B"
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="3.0"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M54,36 C45,30 36,36 36,46 C36,52 39,57 44,59 C40,64 43,71 49,71 C52,71 54,68 54,68" />
+
+    <!-- Right Brain Hemisphere -->
+    <path
+        android:fillColor="#15F59E0B"
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="3.0"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M54,36 C63,30 72,36 72,46 C72,52 69,57 64,59 C68,64 65,71 59,71 C56,71 54,68 54,68" />
+
+    <!-- Central Hemispheric Division -->
+    <path
+        android:strokeColor="#FDE68A"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:pathData="M54,40 L54,64" />
+
+    <!-- Top Awareness / Clarity Spark Star -->
+    <path
+        android:fillColor="#FDE68A"
+        android:pathData="M54,24 L55.5,28 L59.5,29.5 L55.5,31 L54,35 L52.5,31 L48.5,29.5 L52.5,28 Z" />
+
+</vector>

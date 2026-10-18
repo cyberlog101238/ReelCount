@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="512" height="512">
+  <defs>
+    <radialGradient id="bgRadial" cx="54" cy="54" r="65" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#221C18"/>
+      <stop offset="100%" stop-color="#0C0A09"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="108" height="108" rx="28" fill="url(#bgRadial)"/>
+  <circle cx="54" cy="54" r="36" fill="#F59E0B" fill-opacity="0.05" stroke="#F59E0B" stroke-opacity="0.12" stroke-width="1.2"/>
+
+  <!-- Circular Counter Ring Track -->
+  <path d="M54,20 A34,34 0 1,0 88,54 A34,34 0 0,0 54,20 Z" fill="none" stroke="#2E241E" stroke-width="2.5"/>
+
+  <!-- Active Counter Progress Arc (Warm Amber) -->
+  <path d="M54,20 A34,34 0 0,1 87.5,50" fill="none" stroke="#F59E0B" stroke-width="3.2" stroke-linecap="round"/>
+
+  <!-- Milestone Indicator Dot -->
+  <circle cx="54" cy="20" r="2.5" fill="#FDE68A"/>
+
+  <!-- Left Brain Hemisphere -->
+  <path d="M54,36 C45,30 36,36 36,46 C36,52 39,57 44,59 C40,64 43,71 49,71 C52,71 54,68 54,68" fill="#F59E0B" fill-opacity="0.10" stroke="#F59E0B" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right Brain Hemisphere -->
+  <path d="M54,36 C63,30 72,36 72,46 C72,52 69,57 64,59 C68,64 65,71 59,71 C56,71 54,68 54,68" fill="#F59E0B" fill-opacity="0.10" stroke="#F59E0B" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Central Hemispheric Division -->
+  <path d="M54,40 L54,64" stroke="#FDE68A" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Top Awareness / Clarity Spark Star -->
+  <path d="M54,24 L55.5,28 L59.5,29.5 L55.5,31 L54,35 L52.5,31 L48.5,29.5 L52.5,28 Z" fill="#FDE68A"/>
+</svg>
