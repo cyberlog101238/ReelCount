@@ -75,3 +75,89 @@
 ## 🏗️ Architecture
 
 ReelCount follows **Clean Architecture + MVVM** principles:
+
+```
+app/src/main/java/com/jabir/brot/
+├── data/                    # Room Database, DAO entities, DataStore Preferences
+│   ├── dao/                 # ViewingEventDao, DailyAggregateDao, TrackingSessionDao
+│   ├── entity/              # Event logs and daily aggregates
+│   └── repository/          # Offline repositories
+├── domain/                  # Pure Kotlin domain logic & state machines
+│   ├── detector/            # Platform-specific heuristics
+│   │   ├── InstagramReelsDetector.kt
+│   │   ├── FacebookReelsDetector.kt
+│   │   ├── YouTubeShortsDetector.kt
+│   │   └── PlatformDetector.kt
+│   ├── guard/               # DuplicateEventGuard (debounce, session deduplication)
+│   ├── model/               # DetectionEvent, ScreenSnapshot, VideoFingerprint
+│   └── TrackingCoordinator.kt
+├── service/                 # System service integrations
+│   ├── ReelCountAccessibilityService.kt   # System-bound UI inspector
+│   ├── FloatingOverlayController.kt       # Direct WindowManager floating badge
+│   ├── DailyNotificationScheduler.kt      # Scheduled summary receiver
+│   └── BootReceiver.kt                    # Restores schedules on restart
+└── ui/                      # Jetpack Compose UI
+    ├── components/          # Reusable cards, mascot views, indicators
+    ├── navigation/          # NavGraph and tab definitions
+    ├── screens/             # Dashboard, Statistics, Goals, Settings, Developer
+    ├── theme/               # Color palette and typography
+    ├── viewmodel/           # Screen ViewModels
+    └── widget/              # Home screen Glance/AppWidgetProvider
+```
+
+---
+
+## 📋 Target Platform Detection Heuristics
+
+| Platform | Package | Primary Detection Signals | Deduplication Strategy |
+| :--- | :--- | :--- | :--- |
+| **Instagram Reels** | `com.instagram.android` | `clips_viewer`, `clips_video_container`, `clips_media_item`, "Reel by...", full-screen bounds ($\ge 75\%$). | SHA-256 fingerprint from `@author` and caption; settled swipe state machine. |
+| **Facebook Reels** | `com.facebook.katana` | `FbShortsViewerActivity`, `FbShorts`, Litho virtual nodes ("Reel by...", "Like reel", "Original audio"), right action stack. | Regex metric stripping (`^[\d.,\s]+[KkMmBbTt]?$`), composite text signature fallback. |
+| **YouTube Shorts** | `com.google.android.youtube` | `reel_watch_fragment_root`, `reel_recycler`, `reel_player`, Shorts pivot tab, channel handle. | Distinguishes full-screen Shorts fragment from 16:9 standard player and feed carousels. |
+
+---
+
+## 🛠️ Build & Installation Instructions
+
+### Prerequisites
+* **JDK 17+**
+* **Android SDK 34 (Android 14)**
+
+### Building the Debug APK
+```bash
+# On Windows (PowerShell)
+.\gradlew.bat assembleDebug
+
+# On macOS / Linux
+chmod +x gradlew
+./gradlew assembleDebug
+```
+
+The APK will be generated at:
+```
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+---
+
+## 📲 Setup on Android Device
+
+1. **Install APK:**
+   * Download the latest `ReelCount.apk` from the [Releases](https://github.com/cyberlog101238/ReelCount/releases) page.
+   * Open via your device's native **Files / Downloads** app and tap install.
+2. **Enable Accessibility:**
+   * Go to **Settings** $\rightarrow$ **Accessibility** $\rightarrow$ **Downloaded Apps** $\rightarrow$ **ReelCount** $\rightarrow$ Turn **ON**.
+   * *If Android 13/14 blocks with "Restricted Setting":* Go to **Settings** $\rightarrow$ **Apps** $\rightarrow$ **ReelCount** $\rightarrow$ tap top-right 3 dots $\rightarrow$ **Allow restricted settings**.
+3. **Enable Floating Counter:**
+   * In ReelCount, go to **Goals** $\rightarrow$ enable **Floating Live Counter** $\rightarrow$ grant **Display over other apps**.
+
+---
+
+## 🤝 Contributing
+Contributions are warmly welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding new platform detectors or filing issues.
+
+---
+
+## 📄 License
+This project is open-source under the [MIT License](LICENSE).
+Copyright (c) 2026 SM Ali Ahsan Al Jabir.
